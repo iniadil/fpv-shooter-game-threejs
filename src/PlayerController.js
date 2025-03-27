@@ -32,13 +32,12 @@ export class PlayerController {
     // Pointer lock controls
     this.domElement.addEventListener("click", (e) => {
       console.log("Canvas clicked, lock state:", this.controls.isLocked);
-      if (this.controls.isLocked && this.weapon) {
+      if (!this.controls.isLocked) {
+        this.controls.lock();
+      } else if (this.weapon) {
         console.log("Attempting to fire weapon");
         const fired = this.weapon.fire();
         console.log("Weapon fire result:", fired);
-      } else {
-        console.log("Attempting to lock pointer");
-        this.controls.lock();
       }
     });
 
@@ -113,7 +112,7 @@ export class PlayerController {
       this.controls.getObject().position.y += this.velocity.y * delta;
 
       // Improved ground detection
-      const playerHeight = 1.0; // Approximate player height
+      const playerHeight = 1.2; // Approximate player height
       if (this.controls.getObject().position.y <= playerHeight) {
         this.controls.getObject().position.y = playerHeight;
         this.velocity.y = 0;
