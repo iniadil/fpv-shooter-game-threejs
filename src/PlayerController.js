@@ -96,6 +96,9 @@ export class PlayerController {
 
     // Update velocity and position
     if (this.controls.isLocked) {
+      // Apply gravity
+      this.velocity.y += this.gravity * delta;
+
       // Use dampingFactor for smoother deceleration
       this.velocity.x -= this.velocity.x * this.dampingFactor * delta;
       this.velocity.z -= this.velocity.z * this.dampingFactor * delta;
@@ -104,8 +107,21 @@ export class PlayerController {
       this.velocity.z -= this.direction.z * this.moveSpeed * delta * 2;
       this.velocity.x -= this.direction.x * this.moveSpeed * delta * 2;
 
+      // Move player
       this.controls.moveRight(-this.velocity.x * delta);
       this.controls.moveForward(-this.velocity.z * delta);
+      this.controls.getObject().position.y += this.velocity.y * delta;
+
+      // Improved ground detection
+      const playerHeight = 1.0; // Approximate player height
+      if (this.controls.getObject().position.y <= playerHeight) {
+        this.controls.getObject().position.y = playerHeight;
+        this.velocity.y = 0;
+        this.isGrounded = true;
+        this.canJump = true;
+      } else {
+        this.isGrounded = false;
+      }
     }
   }
 }
