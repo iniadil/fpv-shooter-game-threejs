@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Three.js FPV Shooter</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="src/main.js" type="module"></script>
+    <style>
+      .crosshair {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+      }
+      .crosshair::before,
+      .crosshair::after {
+        content: "";
+        position: absolute;
+        background: white;
+      }
+      .crosshair::before {
+        width: 2px;
+        height: 20px;
+        left: 9px;
+        top: 0;
+      }
+      .crosshair::after {
+        width: 20px;
+        height: 2px;
+        left: 0;
+        top: 9px;
+      }
+    </style>
+    <div class="crosshair"></div>
+  </body>
+</html>

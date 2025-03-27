@@ -1,0 +1,19 @@
+{
+  "name": "threejs-fpv-shooter",
+  "version": "1.0.0",
+  "description": "First-person shooter game using Three.js",
+  "main": "src/main.js",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "three": "^0.158.0"
+  },
+  "devDependencies": {
+    "vite": "^4.4.9",
+    "@types/three": "^0.158.0"
+  }
+}
